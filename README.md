@@ -1,2 +1,4 @@
 # To-Do-list
 A To-Do list website provides a simple and efficient way for users to organize tasks and manage their daily activities. Users can easily add, delete, and prioritize tasks, helping them stay organized and focused on their goals
+
+This HTML and CSS code creates a To-Do List website with a motivational background image and dynamic task addition functionality. The background image is fetched from Unsplash, providing a visually appealing backdrop for the To-Do List interface. The interface includes a title, current date display, input field to add tasks, and a list to display tasks. Tasks can be added dynamically by entering text into the input field and clicking the "Add Task" button. Each task item includes a delete button (❌) to remove tasks. The design is responsive and optimized for various screen 

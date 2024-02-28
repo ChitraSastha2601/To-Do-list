@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?motivation');
+            background-size: cover; /* Best fit the background image to the screen */
+            background-position: center;
+            color: #fff; /* Text color to contrast with background */
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay to make text readable */
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.6); /* Adjust the opacity to blend with the background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .date {
+            text-align: right;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .add-task {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .add-task input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-task button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-task button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #333; /* Text color for list items */
+        }
+
+        .delete {
+            color: #ff0000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h1>To-Do List</h1>
+            <div class="date">
+                <p>Date: <span id="currentDate"></span></p>
+            </div>
+            <div class="add-task">
+                <input type="text" id="taskInput" placeholder="Add new task">
+                <button onclick="addTask()">Add Task</button>
+            </div>
+            <ul id="taskList">
+                <!-- Tasks will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Get current date and display it
+        var currentDate = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = currentDate.toLocaleDateString('en-US', options);
+
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var taskList = document.getElementById("taskList");
+
+            if (taskInput.value.trim() !== "") {
+                var li = document.createElement("li");
+                li.textContent = taskInput.value;
+
+                var deleteBtn = document.createElement("span");
+                deleteBtn.textContent = "❌";
+                deleteBtn.classList.add("delete");
+                deleteBtn.onclick = function() {
+                    taskList.removeChild(li);
+                };
+
+                li.appendChild(deleteBtn);
+                taskList.appendChild(li);
+                taskInput.value = "";
+            } else {
+                alert("Please enter a task!");
+            }
+        }
+    </script>
+</body>
+</html>
